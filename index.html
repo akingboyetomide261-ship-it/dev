@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier Properties - Luxury Real Estate</title>
+    <title>GlobalEstate - International Real Estate</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
         .container {
@@ -25,26 +27,26 @@
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #d4af37, #f4e4a3);
+            background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -57,129 +59,122 @@
         }
 
         .nav-links a {
-            color: white;
             text-decoration: none;
-            transition: color 0.3s ease;
+            color: #333;
             font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #d4af37;
+            color: #667eea;
+        }
+
+        .currency-selector {
+            padding: 0.5rem 1rem;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            background: white;
+            color: #667eea;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .currency-selector:hover {
+            background: #667eea;
+            color: white;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><polygon fill="%23764ba2" points="0,600 400,400 800,500 1200,300 1200,600"/><circle fill="%23d4af37" cx="200" cy="150" r="80" opacity="0.7"/><circle fill="%23f093fb" cx="800" cy="200" r="60" opacity="0.5"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 80px;
+            padding: 80px 0;
             text-align: center;
             color: white;
         }
 
-        .hero-content h1 {
+        .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero-content p {
-            font-size: 1.3rem;
+        .hero p {
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #d4af37, #f4e4a3);
-            color: #333;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            opacity: 0.9;
         }
 
         /* Search Bar */
-        .search-section {
-            background: white;
-            padding: 3rem 0;
-            margin-top: -50px;
-            position: relative;
-            z-index: 100;
-        }
-
         .search-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 2rem;
-            display: flex;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
             gap: 1rem;
-            flex-wrap: wrap;
+            align-items: end;
         }
 
-        .search-field {
-            flex: 1;
-            min-width: 200px;
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
 
-        .search-field label {
-            display: block;
+        .form-group label {
+            color: #333;
+            font-weight: bold;
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #555;
         }
 
-        .search-field select,
-        .search-field input {
-            width: 100%;
-            padding: 12px;
+        .form-group input, .form-group select {
+            padding: 0.8rem;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
             transition: border-color 0.3s ease;
         }
 
-        .search-field select:focus,
-        .search-field input:focus {
+        .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #d4af37;
+            border-color: #667eea;
         }
 
         .search-btn {
+            padding: 0.8rem 2rem;
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: bold;
+            cursor: pointer;
             transition: transform 0.3s ease;
-            align-self: end;
         }
 
         .search-btn:hover {
             transform: translateY(-2px);
         }
 
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: 2rem;
+            border-radius: 20px 20px 0 0;
+            padding: 3rem 0;
+            min-height: 100vh;
+        }
+
         /* Featured Properties */
-        .featured {
-            padding: 5rem 0;
-            background: #f8f9fa;
+        .featured-section {
+            padding: 3rem 0;
         }
 
         .section-title {
@@ -200,40 +195,53 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
 
         .property-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .property-image {
             height: 250px;
             background: linear-gradient(45deg, #667eea, #764ba2);
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
+            position: relative;
         }
 
-        .property-details {
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .property-info {
             padding: 1.5rem;
         }
 
         .property-price {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #d4af37;
+            color: #667eea;
             margin-bottom: 0.5rem;
         }
 
         .property-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
             margin-bottom: 0.5rem;
             color: #333;
         }
@@ -241,432 +249,484 @@
         .property-location {
             color: #666;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .property-features {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            color: #666;
             font-size: 0.9rem;
-            color: #555;
         }
 
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-            background: white;
+        /* Countries Section */
+        .countries-section {
+            background: #f8f9fa;
+            padding: 3rem 0;
         }
 
-        .services-grid {
+        .countries-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
-        .service-card {
-            text-align: center;
+        .country-card {
+            background: white;
             padding: 2rem;
             border-radius: 15px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
-        .service-card:nth-child(2) {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        .country-card:hover {
+            transform: translateY(-3px);
         }
 
-        .service-card:nth-child(3) {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
+        .country-flag {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        /* Team Section */
-        .team {
-            padding: 5rem 0;
-            background: #f8f9fa;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .agent-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
+        .country-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
             margin-bottom: 0.5rem;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-        }
-
-        .submit-btn {
-            background: #d4af37;
-            color: #333;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
+        .property-count {
+            color: #666;
+            font-size: 0.9rem;
         }
 
         /* Footer */
         footer {
             background: #333;
             color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding: 2rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .search-container {
-                flex-direction: column;
-            }
-            
             .nav-links {
                 display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countries-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">Premier Properties</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#properties">Properties</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="logo">GlobalEstate</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#properties">Properties</a></li>
+                    <li><a href="#countries">Countries</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <select class="currency-selector" id="currencySelector">
+                    <option value="USD">USD $</option>
+                    <option value="EUR">EUR €</option>
+                    <option value="GBP">GBP £</option>
+                    <option value="JPY">JPY ¥</option>
+                    <option value="AUD">AUD A$</option>
+                </select>
+            </nav>
+        </div>
     </header>
 
     <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Find Your Dream Home</h1>
-            <p>Discover luxury properties with Premier Properties - Your trusted real estate partner</p>
-            <a href="#properties" class="cta-button">Explore Properties</a>
-        </div>
-    </section>
-
-    <section class="search-section">
         <div class="container">
+            <h1>Find Your Dream Home Worldwide</h1>
+            <p>Discover luxury properties across 50+ countries with our expert international real estate services</p>
+            
             <div class="search-container">
-                <div class="search-field">
-                    <label for="location">Location</label>
-                    <select id="location">
-                        <option>Select Location</option>
-                        <option>Downtown</option>
-                        <option>Suburbs</option>
-                        <option>Waterfront</option>
-                        <option>Mountain View</option>
-                    </select>
-                </div>
-                <div class="search-field">
-                    <label for="property-type">Property Type</label>
-                    <select id="property-type">
-                        <option>All Types</option>
-                        <option>House</option>
-                        <option>Apartment</option>
-                        <option>Condo</option>
-                        <option>Villa</option>
-                    </select>
-                </div>
-                <div class="search-field">
-                    <label for="price-range">Price Range</label>
-                    <select id="price-range">
-                        <option>Any Price</option>
-                        <option>$100k - $300k</option>
-                        <option>$300k - $500k</option>
-                        <option>$500k - $1M</option>
-                        <option>$1M+</option>
-                    </select>
-                </div>
-                <button class="search-btn">Search Properties</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="featured" id="properties">
-        <div class="container">
-            <h2 class="section-title">Featured Properties</h2>
-            <div class="properties-grid">
-                <div class="property-card">
-                    <div class="property-image">🏠 Luxury Home</div>
-                    <div class="property-details">
-                        <div class="property-price">$750,000</div>
-                        <div class="property-title">Modern Family Home</div>
-                        <div class="property-location">📍 Beverly Hills, CA</div>
-                        <div class="property-features">
-                            <span>🛏️ 4 Beds</span>
-                            <span>🚿 3 Baths</span>
-                            <span>📐 2,500 sqft</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="property-card">
-                    <div class="property-image">🏢 Luxury Condo</div>
-                    <div class="property-details">
-                        <div class="property-price">$550,000</div>
-                        <div class="property-title">Downtown Penthouse</div>
-                        <div class="property-location">📍 Manhattan, NY</div>
-                        <div class="property-features">
-                            <span>🛏️ 3 Beds</span>
-                            <span>🚿 2 Baths</span>
-                            <span>📐 1,800 sqft</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="property-card">
-                    <div class="property-image">🏖️ Beachfront Villa</div>
-                    <div class="property-details">
-                        <div class="property-price">$1,200,000</div>
-                        <div class="property-title">Oceanfront Retreat</div>
-                        <div class="property-location">📍 Malibu, CA</div>
-                        <div class="property-features">
-                            <span>🛏️ 5 Beds</span>
-                            <span>🚿 4 Baths</span>
-                            <span>📐 3,200 sqft</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏡</div>
-                    <h3>Property Sales</h3>
-                    <p>Expert guidance in buying and selling residential and commercial properties with maximum value optimization.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>Property Management</h3>
-                    <p>Comprehensive property management services including maintenance, tenant screening, and rental collection.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Investment Consulting</h3>
-                    <p>Strategic real estate investment advice to help you build wealth through smart property investments.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="team" id="team">
-        <div class="container">
-            <h2 class="section-title">Meet Our Expert Team</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="agent-photo">👨‍💼</div>
-                    <h3>John Smith</h3>
-                    <p><strong>Senior Real Estate Agent</strong></p>
-                    <p>15+ years of experience in luxury property sales with over $50M in transactions.</p>
-                </div>
-                <div class="team-card">
-                    <div class="agent-photo">👩‍💼</div>
-                    <h3>Sarah Johnson</h3>
-                    <p><strong>Property Manager</strong></p>
-                    <p>Specialist in commercial properties and investment portfolio management.</p>
-                </div>
-                <div class="team-card">
-                    <div class="agent-photo">👨‍💼</div>
-                    <h3>Michael Brown</h3>
-                    <p><strong>Investment Advisor</strong></p>
-                    <p>Expert in real estate investment strategies and market analysis.</p>
-                </div>
-                <div class="team-card">
-                    <div class="agent-photo">👩‍💼</div>
-                    <h3>Emily Davis</h3>
-                    <p><strong>Client Relations</strong></p>
-                    <p>Dedicated to providing exceptional customer service and client satisfaction.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div>
-                    <h3>Contact Information</h3>
-                    <p>📞 Phone: (555) 123-4567</p>
-                    <p>✉️ Email: info@premierproperties.com</p>
-                    <p>📍 Address: 123 Real Estate Ave, Suite 100, Your City, State 12345</p>
-                    <p>🕒 Hours: Monday - Saturday, 9AM - 6PM</p>
-                </div>
-                <form class="contact-form">
+                <form class="search-form" id="searchForm">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" required>
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="City, Country">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
+                        <label for="propertyType">Property Type</label>
+                        <select id="propertyType">
+                            <option value="">All Types</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                            <option value="penthouse">Penthouse</option>
+                            <option value="commercial">Commercial</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone">
+                        <label for="budget">Max Budget</label>
+                        <select id="budget">
+                            <option value="">Any Price</option>
+                            <option value="500000">$500K</option>
+                            <option value="1000000">$1M</option>
+                            <option value="2000000">$2M</option>
+                            <option value="5000000">$5M+</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <button type="submit" class="search-btn">Search</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer>
+    <main>
+        <section class="featured-section" id="properties">
+            <div class="container">
+                <h2 class="section-title">Featured Properties</h2>
+                <div class="properties-grid" id="propertiesGrid">
+                    <!-- Properties will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <section class="countries-section" id="countries">
+            <div class="container">
+                <h2 class="section-title">Explore by Country</h2>
+                <div class="countries-grid" id="countriesGrid">
+                    <!-- Countries will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
         <div class="container">
-            <p>&copy; 2025 Premier Properties. All rights reserved. | Licensed Real Estate Broker</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GlobalEstate</h3>
+                    <p>Your trusted partner in international real estate. We help you find the perfect property anywhere in the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#countries">Countries</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Property Search</a></li>
+                        <li><a href="#">Investment Advice</a></li>
+                        <li><a href="#">Legal Support</a></li>
+                        <li><a href="#">Financing Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>📧 info@globalestate.com</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>🌍 London | New York | Dubai</li>
+                        <li>🕒 24/7 Global Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GlobalEstate. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Sample data for properties
+        const properties = [
+            {
+                id: 1,
+                title: "Modern Penthouse",
+                location: "Manhattan, New York",
+                country: "USA",
+                price: 2500000,
+                type: "penthouse",
+                bedrooms: 3,
+                bathrooms: 2,
+                size: 180,
+                badge: "Featured"
+            },
+            {
+                id: 2,
+                title: "Luxury Villa",
+                location: "Tuscany, Italy",
+                country: "Italy",
+                price: 1800000,
+                type: "villa",
+                bedrooms: 5,
+                bathrooms: 4,
+                size: 350,
+                badge: "New"
+            },
+            {
+                id: 3,
+                title: "Waterfront Apartment",
+                location: "Cannes, France",
+                country: "France",
+                price: 1200000,
+                type: "apartment",
+                bedrooms: 2,
+                bathrooms: 2,
+                size: 120,
+                badge: "Hot"
+            },
+            {
+                id: 4,
+                title: "Modern House",
+                location: "Tokyo, Japan",
+                country: "Japan",
+                price: 950000,
+                type: "house",
+                bedrooms: 4,
+                bathrooms: 3,
+                size: 200,
+                badge: "New"
+            },
+            {
+                id: 5,
+                title: "Seaside Villa",
+                location: "Gold Coast, Australia",
+                country: "Australia",
+                price: 1600000,
+                type: "villa",
+                bedrooms: 4,
+                bathrooms: 3,
+                size: 280,
+                badge: "Featured"
+            },
+            {
+                id: 6,
+                title: "City Loft",
+                location: "London, UK",
+                country: "UK",
+                price: 1100000,
+                type: "apartment",
+                bedrooms: 2,
+                bathrooms: 2,
+                size: 95,
+                badge: "Hot"
+            }
+        ];
+
+        // Sample data for countries
+        const countries = [
+            { name: "United States", flag: "🇺🇸", count: 1245 },
+            { name: "United Kingdom", flag: "🇬🇧", count: 856 },
+            { name: "France", flag: "🇫🇷", count: 642 },
+            { name: "Italy", flag: "🇮🇹", count: 578 },
+            { name: "Spain", flag: "🇪🇸", count: 489 },
+            { name: "Germany", flag: "🇩🇪", count: 423 },
+            { name: "Australia", flag: "🇦🇺", count: 367 },
+            { name: "Japan", flag: "🇯🇵", count: 298 },
+            { name: "Canada", flag: "🇨🇦", count: 256 },
+            { name: "Switzerland", flag: "🇨🇭", count: 189 },
+            { name: "UAE", flag: "🇦🇪", count: 234 },
+            { name: "Singapore", flag: "🇸🇬", count: 145 }
+        ];
+
+        // Currency exchange rates (simplified)
+        const exchangeRates = {
+            USD: 1,
+            EUR: 0.85,
+            GBP: 0.73,
+            JPY: 110,
+            AUD: 1.35
+        };
+
+        let currentCurrency = 'USD';
+
+        // Format price based on selected currency
+        function formatPrice(price, currency = currentCurrency) {
+            const convertedPrice = price * exchangeRates[currency];
+            const symbols = { USD: '$', EUR: '€', GBP: '£', JPY: '¥', AUD: 'A$' };
+            
+            if (currency === 'JPY') {
+                return `${symbols[currency]}${Math.round(convertedPrice).toLocaleString()}`;
+            }
+            return `${symbols[currency]}${(convertedPrice / 1000).toFixed(0)}K`;
+        }
+
+        // Render properties
+        function renderProperties(propertiesToRender = properties) {
+            const grid = document.getElementById('propertiesGrid');
+            grid.innerHTML = propertiesToRender.map(property => `
+                <div class="property-card" onclick="showPropertyDetails(${property.id})">
+                    <div class="property-image">
+                        <div class="property-badge">${property.badge}</div>
+                        🏠 Property Image
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">${formatPrice(property.price)}</div>
+                        <div class="property-title">${property.title}</div>
+                        <div class="property-location">📍 ${property.location}</div>
+                        <div class="property-features">
+                            <span>🛏️ ${property.bedrooms} beds</span>
+                            <span>🚿 ${property.bathrooms} baths</span>
+                            <span>📐 ${property.size}m²</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render countries
+        function renderCountries() {
+            const grid = document.getElementById('countriesGrid');
+            grid.innerHTML = countries.map(country => `
+                <div class="country-card" onclick="searchByCountry('${country.name}')">
+                    <div class="country-flag">${country.flag}</div>
+                    <div class="country-name">${country.name}</div>
+                    <div class="property-count">${country.count} properties</div>
+                </div>
+            `).join('');
+        }
+
+        // Search functionality
+        function searchProperties() {
+            const location = document.getElementById('location').value.toLowerCase();
+            const propertyType = document.getElementById('propertyType').value;
+            const budget = parseInt(document.getElementById('budget').value) || Infinity;
+
+            const filteredProperties = properties.filter(property => {
+                const matchesLocation = !location || 
+                    property.location.toLowerCase().includes(location) ||
+                    property.country.toLowerCase().includes(location);
+                const matchesType = !propertyType || property.type === propertyType;
+                const matchesBudget = property.price <= budget;
+
+                return matchesLocation && matchesType && matchesBudget;
+            });
+
+            renderProperties(filteredProperties);
+        }
+
+        // Search by country
+        function searchByCountry(countryName) {
+            document.getElementById('location').value = countryName;
+            searchProperties();
+            document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show property details
+        function showPropertyDetails(propertyId) {
+            const property = properties.find(p => p.id === propertyId);
+            if (property) {
+                alert(`Property Details:\n\n${property.title}\nLocation: ${property.location}\nPrice: ${formatPrice(property.price)}\nBedrooms: ${property.bedrooms}\nBathrooms: ${property.bathrooms}\nSize: ${property.size}m²\n\nContact us for more information!`);
+            }
+        }
+
+        // Currency change handler
+        document.getElementById('currencySelector').addEventListener('change', function(e) {
+            currentCurrency = e.target.value;
+            renderProperties();
+        });
+
+        // Search form handler
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            searchProperties();
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
 
-        // Header background change on scroll
+        // Initialize the page
+        renderProperties();
+        renderCountries();
+
+        // Add some interactive animations on scroll
         window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
-            } else {
-                header.style.background = 'rgba(0, 0, 0, 0.9)';
-            }
-        });
-
-        // Property card click handling
-        document.querySelectorAll('.property-card').forEach(card => {
-            card.addEventListener('click', function() {
-                alert('Property details would open here. This would typically link to a detailed property page.');
+            const cards = document.querySelectorAll('.property-card, .country-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
             });
         });
 
-        // Contact form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
-            this.reset();
-        });
-
-        // Search functionality
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            const location = document.getElementById('location').value;
-            const propertyType = document.getElementById('property-type').value;
-            const priceRange = document.getElementById('price-range').value;
-            
-            alert(`Searching for ${propertyType} properties in ${location} within ${priceRange} price range. Results would be displayed here.`);
+        // Initialize card animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.property-card, .country-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
         });
     </script>
 </body>
