@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomeForAll - Affordable Properties Worldwide</title>
+    <title>GlobalEstate - Luxury Properties Worldwide</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,9 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            color: #333;
         }
 
         .container {
@@ -25,14 +23,16 @@
             padding: 0 20px;
         }
 
+        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
             padding: 1rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -42,13 +42,12 @@
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ff6b35);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-decoration: none;
+            background-clip: text;
         }
 
         .nav-links {
@@ -58,285 +57,361 @@
         }
 
         .nav-links a {
+            color: white;
             text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 25px;
         }
 
         .nav-links a:hover {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
+            background: rgba(255,255,255,0.1);
             transform: translateY(-2px);
         }
 
+        /* Hero Section */
         .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,0 L600,300 L1200,0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
             text-align: center;
-            padding: 4rem 0;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50px, -50px) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            font-weight: 900;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 1s ease-out;
+            animation: fadeInUp 1s ease;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-            animation: fadeInUp 1s ease-out 0.4s both;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
-        }
-
+        /* Search Section */
         .search-section {
             background: white;
-            margin: -50px auto 3rem;
-            max-width: 800px;
             padding: 2rem;
+            margin: -100px auto 0;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             position: relative;
-            z-index: 100;
+            z-index: 3;
+            backdrop-filter: blur(10px);
         }
 
         .search-form {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr auto;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             align-items: end;
         }
 
-        .form-group {
+        .search-group {
             display: flex;
             flex-direction: column;
         }
 
-        .form-group label {
-            font-weight: 600;
+        .search-group label {
             margin-bottom: 0.5rem;
-            color: #2c3e50;
+            font-weight: 600;
+            color: #555;
         }
 
-        .form-group input, .form-group select {
+        .search-group select,
+        .search-group input {
             padding: 0.8rem;
-            border: 2px solid #e9ecef;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .search-group select:focus,
+        .search-group input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
         }
 
         .search-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff6b35, #ffd700);
             color: white;
             border: none;
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             border-radius: 10px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
 
-        .main-content {
-            background: white;
-            min-height: 100vh;
-            padding: 3rem 0;
+        /* Properties Section */
+        .properties-section {
+            padding: 4rem 0;
+            background: #f8fafc;
         }
 
         .section-title {
+            text-align: center;
             font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #1e3c72;
+            position: relative;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b35, #ffd700);
+            border-radius: 2px;
         }
 
-        .feature-card {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0fe 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(102, 126, 234, 0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            filter: grayscale(0.2);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .properties {
+        .properties-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 3rem;
         }
 
         .property-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            border: 1px solid #f1f3f4;
+            cursor: pointer;
         }
 
         .property-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
         .property-image {
-            width: 100%;
-            height: 200px;
+            height: 250px;
             background: linear-gradient(45deg, #667eea, #764ba2);
             position: relative;
             overflow: hidden;
         }
 
-        .property-image::before {
+        .property-image::after {
             content: '🏠';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 4rem;
-            opacity: 0.7;
+            opacity: 0.3;
         }
 
-        .property-details {
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 107, 53, 0.9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .property-info {
             padding: 1.5rem;
         }
 
         .property-price {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #27ae60;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b35;
             margin-bottom: 0.5rem;
         }
 
+        .property-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+
         .property-location {
-            font-size: 1rem;
-            color: #7f8c8d;
+            color: #666;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .property-features {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1rem;
+            color: #555;
             font-size: 0.9rem;
-            color: #2c3e50;
         }
 
-        .property-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
-        .property-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .stats {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
+        /* Global Markets Section */
+        .markets-section {
             padding: 4rem 0;
-            text-align: center;
+            background: white;
         }
 
-        .stats-grid {
+        .markets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
-        .stat-item {
-            padding: 1rem;
+        .market-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transition: all 0.3s ease;
         }
 
-        .stat-number {
+        .market-card:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .market-card:nth-child(3) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .market-card:nth-child(4) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .market-card:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .market-icon {
             font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
         }
 
-        .stat-label {
-            font-size: 1.1rem;
+        .market-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .market-properties {
             opacity: 0.9;
         }
 
+        /* Services Section */
+        .services-section {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+
+        .service-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
         footer {
-            background: #2c3e50;
+            background: #1e3c72;
             color: white;
             padding: 3rem 0 1rem;
         }
@@ -349,55 +424,76 @@
         }
 
         .footer-section h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
             margin-bottom: 1rem;
-            color: #ff6b6b;
+            color: #ffd700;
         }
 
-        .footer-section p, .footer-section a {
-            color: #bdc3c7;
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            line-height: 1.8;
+            transition: color 0.3s ease;
         }
 
         .footer-section a:hover {
-            color: #ff6b6b;
+            color: #ffd700;
         }
 
         .footer-bottom {
-            border-top: 1px solid #34495e;
-            padding-top: 1rem;
             text-align: center;
-            color: #95a5a6;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
         }
 
-        @keyframes fadeInUp {
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for property cards */
+        .property-card {
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .property-card:nth-child(1) { animation-delay: 0.1s; }
+        .property-card:nth-child(2) { animation-delay: 0.2s; }
+        .property-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .search-form {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .properties {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -405,275 +501,215 @@
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo">HomeForAll</a>
+            <div class="logo">GlobalEstate</div>
             <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
                 <li><a href="#properties">Properties</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#financing">Financing</a></li>
+                <li><a href="#markets">Markets</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <h1>Your Dream Home Awaits</h1>
-            <p>Discover affordable properties worldwide - because everyone deserves a place to call home</p>
-            <a href="#properties" class="cta-button">Explore Properties</a>
+            <div class="hero-content">
+                <h1>Discover Luxury Properties Worldwide</h1>
+                <p>Connect with premium real estate opportunities across the globe. Your dream property awaits.</p>
+            </div>
         </div>
     </section>
 
-    <div class="container">
+    <section class="container">
         <div class="search-section">
-            <form class="search-form" id="searchForm">
-                <div class="form-group">
+            <form class="search-form">
+                <div class="search-group">
                     <label for="location">Location</label>
-                    <input type="text" id="location" name="location" placeholder="City, Country">
-                </div>
-                <div class="form-group">
-                    <label for="propertyType">Property Type</label>
-                    <select id="propertyType" name="propertyType">
-                        <option value="">All Types</option>
-                        <option value="apartment">Apartment</option>
-                        <option value="house">House</option>
-                        <option value="condo">Condo</option>
-                        <option value="studio">Studio</option>
+                    <select id="location">
+                        <option value="">Select Location</option>
+                        <option value="usa">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="canada">Canada</option>
+                        <option value="australia">Australia</option>
+                        <option value="france">France</option>
+                        <option value="germany">Germany</option>
+                        <option value="japan">Japan</option>
+                        <option value="singapore">Singapore</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="maxPrice">Max Price (USD)</label>
-                    <input type="number" id="maxPrice" name="maxPrice" placeholder="100,000">
+                <div class="search-group">
+                    <label for="property-type">Property Type</label>
+                    <select id="property-type">
+                        <option value="">All Types</option>
+                        <option value="house">House</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="villa">Villa</option>
+                        <option value="penthouse">Penthouse</option>
+                        <option value="commercial">Commercial</option>
+                    </select>
                 </div>
-                <button type="submit" class="search-btn">Search</button>
+                <div class="search-group">
+                    <label for="min-price">Min Price</label>
+                    <input type="text" id="min-price" placeholder="$500,000">
+                </div>
+                <div class="search-group">
+                    <label for="max-price">Max Price</label>
+                    <input type="text" id="max-price" placeholder="$5,000,000">
+                </div>
+                <button type="submit" class="search-btn">Search Properties</button>
             </form>
         </div>
-    </div>
+    </section>
 
-    <main class="main-content">
+    <section class="properties-section" id="properties">
         <div class="container">
-            <h2 class="section-title">Why Choose HomeForAll?</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3 class="feature-title">Global Reach</h3>
-                    <p>Access properties from every continent with our worldwide network of trusted partners and local experts.</p>
+            <h2 class="section-title">Featured Properties</h2>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-image">
+                        <div class="property-badge">Featured</div>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">$2,850,000</div>
+                        <h3 class="property-title">Modern Penthouse Suite</h3>
+                        <div class="property-location">📍 Manhattan, New York</div>
+                        <div class="property-features">
+                            <span class="feature">🛏️ 4 Beds</span>
+                            <span class="feature">🚿 3 Baths</span>
+                            <span class="feature">📐 3,200 sqft</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3 class="feature-title">Affordable Pricing</h3>
-                    <p>We specialize in finding quality homes at prices that won't break the bank, with flexible financing options.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3 class="feature-title">Secure Transactions</h3>
-                    <p>All transactions are protected with bank-level security and comprehensive buyer protection programs.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Virtual Tours</h3>
-                    <p>Explore properties remotely with high-quality 360° virtual tours and video walkthroughs.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3 class="feature-title">Expert Support</h3>
-                    <p>Our team of real estate professionals provides guidance throughout your property buying journey.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Fast Process</h3>
-                    <p>Streamlined buying process with digital documentation and quick approval systems.</p>
-                </div>
-            </div>
 
-            <h2 class="section-title" id="properties">Featured Affordable Properties</h2>
-            <div class="properties" id="propertyGrid">
-                <!-- Properties will be populated by JavaScript -->
-            </div>
-        </div>
-    </main>
+                <div class="property-card">
+                    <div class="property-image">
+                        <div class="property-badge">New</div>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">£1,950,000</div>
+                        <h3 class="property-title">Victorian Townhouse</h3>
+                        <div class="property-location">📍 Kensington, London</div>
+                        <div class="property-features">
+                            <span class="feature">🛏️ 5 Beds</span>
+                            <span class="feature">🚿 4 Baths</span>
+                            <span class="feature">📐 2,800 sqft</span>
+                        </div>
+                    </div>
+                </div>
 
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">250K+</div>
-                    <div class="stat-label">Happy Homeowners</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">180</div>
-                    <div class="stat-label">Countries Covered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$25K</div>
-                    <div class="stat-label">Average Property Price</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Satisfaction Rate</div>
+                <div class="property-card">
+                    <div class="property-image">
+                        <div class="property-badge">Premium</div>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">€3,200,000</div>
+                        <h3 class="property-title">Mediterranean Villa</h3>
+                        <div class="property-location">📍 French Riviera, France</div>
+                        <div class="property-features">
+                            <span class="feature">🛏️ 6 Beds</span>
+                            <span class="feature">🚿 5 Baths</span>
+                            <span class="feature">📐 4,500 sqft</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <section class="markets-section" id="markets">
+        <div class="container">
+            <h2 class="section-title">Global Markets</h2>
+            <div class="markets-grid">
+                <div class="market-card">
+                    <div class="market-icon">🇺🇸</div>
+                    <h3 class="market-name">United States</h3>
+                    <p class="market-properties">2,847 Properties</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">🇬🇧</div>
+                    <h3 class="market-name">United Kingdom</h3>
+                    <p class="market-properties">1,523 Properties</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">🇫🇷</div>
+                    <h3 class="market-name">France</h3>
+                    <p class="market-properties">987 Properties</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">🇦🇺</div>
+                    <h3 class="market-name">Australia</h3>
+                    <p class="market-properties">1,234 Properties</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Property Valuation</h3>
+                    <p class="service-description">Get accurate property valuations using advanced market analysis and international standards.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3 class="service-title">Investment Consulting</h3>
+                    <p class="service-description">Expert guidance on international real estate investments with market insights and ROI analysis.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3 class="service-title">Property Management</h3>
+                    <p class="service-description">Comprehensive property management services for international property owners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>About HomeForAll</h3>
-                    <p>We believe everyone deserves access to affordable housing. Our mission is to connect people with quality homes at prices that make homeownership possible for all.</p>
+                    <h3>GlobalEstate</h3>
+                    <p>Your trusted partner in global real estate. Connecting buyers and sellers worldwide with premium properties and exceptional service.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <p><a href="#properties">Browse Properties</a></p>
-                    <p><a href="#financing">Financing Options</a></p>
-                    <p><a href="#support">Customer Support</a></p>
-                    <p><a href="#blog">Real Estate Blog</a></p>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#markets">Global Markets</a></li>
+                        <li><a href="#services">Services</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Support</h3>
-                    <p><a href="#help">Help Center</a></p>
-                    <p><a href="#contact">Contact Us</a></p>
-                    <p><a href="#legal">Legal Information</a></p>
-                    <p><a href="#privacy">Privacy Policy</a></p>
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📧 info@globalestate.com</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>📍 123 Global Plaza, International City</li>
+                        <li>🌐 www.globalestate.com</li>
+                    </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Connect</h3>
-                    <p>Email: info@homeforall.com</p>
-                    <p>Phone: +1-800-HOMEALL</p>
-                    <p>Social Media: @HomeForAll</p>
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 HomeForAll. Making homeownership accessible worldwide.</p>
+                <p>&copy; 2025 GlobalEstate. All rights reserved. | Privacy Policy | Terms of Service</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Sample property data
-        const properties = [
-            {
-                id: 1,
-                price: '$45,000',
-                location: 'Lisbon, Portugal',
-                type: 'Apartment',
-                bedrooms: 2,
-                bathrooms: 1,
-                sqft: '650 sq ft',
-                description: 'Charming apartment in historic Alfama district'
-            },
-            {
-                id: 2,
-                price: '$32,000',
-                location: 'Budapest, Hungary',
-                type: 'Studio',
-                bedrooms: 1,
-                bathrooms: 1,
-                sqft: '450 sq ft',
-                description: 'Modern studio near thermal baths'
-            },
-            {
-                id: 3,
-                price: '$67,000',
-                location: 'Medellín, Colombia',
-                type: 'House',
-                bedrooms: 3,
-                bathrooms: 2,
-                sqft: '1200 sq ft',
-                description: 'Beautiful house with mountain views'
-            },
-            {
-                id: 4,
-                price: '$28,000',
-                location: 'Sofia, Bulgaria',
-                type: 'Apartment',
-                bedrooms: 2,
-                bathrooms: 1,
-                sqft: '700 sq ft',
-                description: 'Renovated apartment in city center'
-            },
-            {
-                id: 5,
-                price: '$53,000',
-                location: 'Prague, Czech Republic',
-                type: 'Condo',
-                bedrooms: 2,
-                bathrooms: 2,
-                sqft: '800 sq ft',
-                description: 'Stylish condo near Old Town Square'
-            },
-            {
-                id: 6,
-                price: '$41,000',
-                location: 'Krakow, Poland',
-                type: 'Apartment',
-                bedrooms: 2,
-                bathrooms: 1,
-                sqft: '750 sq ft',
-                description: 'Cozy apartment in historic district'
-            }
-        ];
-
-        // Function to render properties
-        function renderProperties(propertiesToShow = properties) {
-            const propertyGrid = document.getElementById('propertyGrid');
-            propertyGrid.innerHTML = '';
-
-            propertiesToShow.forEach(property => {
-                const propertyCard = document.createElement('div');
-                propertyCard.className = 'property-card';
-                propertyCard.innerHTML = `
-                    <div class="property-image"></div>
-                    <div class="property-details">
-                        <div class="property-price">${property.price}</div>
-                        <div class="property-location">📍 ${property.location}</div>
-                        <div class="property-features">
-                            <span>🏠 ${property.type}</span>
-                            <span>🛏️ ${property.bedrooms} bed</span>
-                            <span>🚿 ${property.bathrooms} bath</span>
-                        </div>
-                        <p style="margin-bottom: 1rem; color: #7f8c8d;">${property.description}</p>
-                        <button class="property-btn" onclick="viewProperty(${property.id})">View Details</button>
-                    </div>
-                `;
-                propertyGrid.appendChild(propertyCard);
-            });
-        }
-
-        // Function to handle property viewing
-        function viewProperty(id) {
-            const property = properties.find(p => p.id === id);
-            alert(`Property Details:\n\n${property.description}\nLocation: ${property.location}\nPrice: ${property.price}\nType: ${property.type}\nSize: ${property.sqft}\n\nContact us to schedule a virtual tour!`);
-        }
-
-        // Function to handle search
-        function handleSearch(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const location = formData.get('location')?.toLowerCase() || '';
-            const propertyType = formData.get('propertyType')?.toLowerCase() || '';
-            const maxPrice = parseFloat(formData.get('maxPrice')) || Infinity;
-
-            const filteredProperties = properties.filter(property => {
-                const matchesLocation = !location || property.location.toLowerCase().includes(location);
-                const matchesType = !propertyType || property.type.toLowerCase() === propertyType;
-                const price = parseFloat(property.price.replace(/[$,]/g, ''));
-                const matchesPrice = price <= maxPrice;
-
-                return matchesLocation && matchesType && matchesPrice;
-            });
-
-            renderProperties(filteredProperties);
-            
-            // Smooth scroll to properties section
-            document.getElementById('properties').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-
-        // Add event listeners
-        document.getElementById('searchForm').addEventListener('submit', handleSearch);
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -688,28 +724,66 @@
             });
         });
 
-        // Initialize properties on page load
-        renderProperties();
+        // Search form functionality
+        document.querySelector('.search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const location = document.getElementById('location').value;
+            const propertyType = document.getElementById('property-type').value;
+            const minPrice = document.getElementById('min-price').value;
+            const maxPrice = document.getElementById('max-price').value;
+            
+            // Simulate search results
+            alert(`Searching for properties...\nLocation: ${location || 'Any'}\nType: ${propertyType || 'Any'}\nPrice Range: ${minPrice || 'No min'} - ${maxPrice || 'No max'}`);
+            
+            // In a real application, this would trigger an API call to search for properties
+        });
 
-        // Add some interactive animations
+        // Add hover effects to property cards
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('Property details would be shown here in a real application!');
+            });
+        });
+
+        // Market cards click functionality
+        document.querySelectorAll('.market-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const marketName = this.querySelector('.market-name').textContent;
+                alert(`Exploring ${marketName} market properties...`);
+            });
+        });
+
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        // Observe feature cards and property cards
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.feature-card, .property-card').forEach(card => {
-                observer.observe(card);
-            });
+        // Observe elements for animation
+        document.querySelectorAll('.property-card, .market-card, .service-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(30, 60, 114, 0.95) 0%, rgba(42, 82, 152, 0.95) 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                header.style.backdropFilter = 'none';
+            }
         });
     </script>
 </body>
